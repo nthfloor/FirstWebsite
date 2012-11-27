@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script type="text/javascript">
+		function PassValidation()
+		{
+			user=document.getElementById("user");
+			user.innerHTML="";
+			password=document.getElementById("password");
+			password.innerHTML="";			
+			if(password.value=="password" && user.value=="nathan")
+			{
+				alert('Welcome to HelloWorld Enterprises!');
+				window.location="First.html";
+			}
+			else
+			{
+				alert('Incorrect Password, try again.');
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div>
+		<div id="header" style="background-color:yellow;">
+			<h1 style="margin-middle:0;">HelloWorld Enterprises Login</h1>
+		</div>
+
+		<div id="login_form" style="background-color:#EEEEEE">
+			<form action="">
+				<table border="0" align="center">
+					<tr>
+						<td>Username</td>
+						<td>:</td>
+						<td><input type="text" id="user"></td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td>:</td>
+						<td><input type="password" id="password"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td><button type="button" onclick="PassValidation()" align="center">Validate</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
