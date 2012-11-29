@@ -9,7 +9,7 @@ if(isset($_SESSION['views']))
 
 session_destroy();
 ob_start();
-header("Location: ../main_login.php");
+header("Location: ../signin.html");
 ob_end_flush();
 exit();
 

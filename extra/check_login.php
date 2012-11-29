@@ -35,6 +35,7 @@
 		}
 		else
 		{
+			$_SESSION['user']=null;
 			//alert("Sorry, try again...");
 			//move back to login page
 			//ob_start();
