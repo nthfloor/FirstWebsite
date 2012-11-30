@@ -23,7 +23,7 @@ if($_POST['btnEdit']=="Edit")
 
 	}*/
 
-	$sql="UPDATE UserDetails SET Name='".$fname."' WHERE Username='".$uname."'";
+	$sql="UPDATE UserDetails SET Name='".$fname."', Password='".$password."', Email='".$email."' WHERE Username='".$uname."'";
 	if(!mysql_query($sql))
 	{
 		die('Error: '.mysql_error());

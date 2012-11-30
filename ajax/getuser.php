@@ -1,4 +1,5 @@
 <?php
+session_start();
 //uses javascripts alert function
 function alert($input)
 {
@@ -24,7 +25,7 @@ if($q=="all_users")
 	$result=mysql_query($sql);	
 
 	echo "<h3><b>List of Users</b></h3><hr>";
-	echo "<table border='1'>";
+	echo "<table border='1' class=\"table table-hover table-striped\">";
 	echo "<tr>
 		<th>Username</th>
 		<th>Name</th>
@@ -42,6 +43,7 @@ if($q=="all_users")
 	  	echo "</tr>";
 	}
 	echo "</table>";
+	$_SESSION['mail']=0;
 }
 else
 {	
@@ -50,36 +52,43 @@ else
 
 	while($row=mysql_fetch_array($result))
 	{
-		echo "<h3>User Account Details</h3><hr>";
-		echo "<form action=\"../ajax/modify_user.php\" method=\"post\">";
-		echo "<table>
-				<tr>
-					<td>Name</td>
-					<td>:</td>
-					<td><input type=\"text\" name=\"Name\" value=\"".$row['Name']."\"></td>
-				</tr>";
-		echo	"<tr>
-					<td>Username</td>
-					<td>:</td>
-					<td><input type=\"text\" name=\"Username\" value=\"".$row['Username']."\"></td>
-				</tr>";
-		echo	"<tr>
-					<td>Password</td>
-					<td>:</td>
-					<td><input type=\"text\" name=\"Password\" value=\"".$row['Password']."\"></td>
-				</tr>";
-		echo	"<tr>
-					<td>Email</td>
-					<td>:</td>
-					<td><input type=\"text\" name=\"Email\" value=\"".$row['Email']."\"></td>
-				</tr>";	
-		echo	"<tr>	
-					<td></td>
-					<td></td>
-					<td><input type=\"submit\" value=\"Edit\" name=\"btnEdit\"><input type=\"submit\" name=\"btnDel\" value=\"Delete\"></td>							
-				</tr>
-				</table>
-				</form>";
+		echo "<legend><h3>User Account Details</h3></legend>";
+		echo "<form class=\"well form-horizontal\" action=\"../ajax/modify_user.php\" method=\"post\">";
+		echo "<fieldset>";		
+		echo "<div class=\"control-group\">";
+		echo "	<label class=\"control-label\" for=\"name_in\">Name: </label>";
+		echo "	<div class=\"controls\">";
+		echo "		<input class= \"input-xlarge\" id=\"name_in\" type=\"text\" name=\"Name\" value=\"".$row['Name']."\">";
+		echo "		<p class=\"hint-block\">This field cannot be edited...</p>";
+		echo "	</div>";
+		echo "</div>";
+		echo "<div class=\"control-group\">";
+		echo "	<label class=\"control-label\" for=\"uname_in\">Username: </label>";
+		echo "	<div class=\"controls\">";
+		echo "		<input class= \"input-xlarge\" id=\"uname_in\" type=\"text\" name=\"Username\" value=\"".$row['Username']."\" disabled>";
+		echo "	</div>";
+		echo "</div>";
+		echo "<div class=\"control-group\">";
+		echo "	<label class=\"control-label\" for=\"pass_in\">Password: </label>";
+		echo "	<div class=\"controls\">";
+		echo "		<input class= \"input-xlarge\" id=\"pass_in\" type=\"text\" name=\"Password\" value=\"".$row['Password']."\">";
+		echo "	</div>";
+		echo "</div>";
+		echo "<div class=\"control-group\">";
+		echo "	<label class=\"control-label\" for=\"mail_in\">Email: </label>";
+		echo "	<div class=\"controls\">";
+		echo "		<input class= \"input-xlarge\" id=\"mail_in\" type=\"text\" name=\"Email\" value=\"".$row['Email']."\">";
+		echo "	</div>";
+		echo "</div>";
+		echo "<div class=\"control-group\">";
+		echo "	<div class=\"controls\">";
+		echo "		<input class=\"btn btn-warning\"type=\"submit\" value=\"Edit\" name=\"btnEdit\"> <input class=\"btn btn-danger\" type=\"submit\" name=\"btnDel\" value=\"Delete\">";
+		echo "	</div>";
+		echo "</div>";
+		echo "</form>";
+		echo "</div>";
+		echo "</fieldset>";
+		$_SESSION['mail']=1;
 	}
 }
 
