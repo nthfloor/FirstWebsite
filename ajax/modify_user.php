@@ -6,8 +6,8 @@ if(! $con)
 	die('Could not connect to: '.mysql_error());
 }
 mysql_select_db("my_db",$con);
-
-if($_POST['btnEdit']=="Edit")
+//var_dump($_POST);exit;
+if(isset($_POST['btnEdit'])) //$_POST['btnEdit']=="Edit"
 {
 	//retrieve new user's details and insert into DB
 	$fname=$_POST['Name'];
@@ -29,7 +29,7 @@ if($_POST['btnEdit']=="Edit")
 		die('Error: '.mysql_error());
 	}	
 }
-else if($_POST['btnDel']=="Delete")
+else if(isset($_POST['btnDel']))
 {
 	$uname=$_POST['Username'];
 	$sql="DELETE FROM UserDetails WHERE Username='".$uname."'";
@@ -38,6 +38,9 @@ else if($_POST['btnDel']=="Delete")
 		die('Error: '.mysql_error());
 	}	
 }
+
+echo $fname." ".$uname." ".$password." ".$email;
+
 ob_start();
 header("Location: ../extra/login_success.php");
 ob_end_flush();

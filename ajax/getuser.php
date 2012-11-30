@@ -59,13 +59,12 @@ else
 		echo "	<label class=\"control-label\" for=\"name_in\">Name: </label>";
 		echo "	<div class=\"controls\">";
 		echo "		<input class= \"input-xlarge\" id=\"name_in\" type=\"text\" name=\"Name\" value=\"".$row['Name']."\">";
-		echo "		<p class=\"hint-block\">This field cannot be edited...</p>";
 		echo "	</div>";
 		echo "</div>";
 		echo "<div class=\"control-group\">";
 		echo "	<label class=\"control-label\" for=\"uname_in\">Username: </label>";
 		echo "	<div class=\"controls\">";
-		echo "		<input class= \"input-xlarge\" id=\"uname_in\" type=\"text\" name=\"Username\" value=\"".$row['Username']."\" disabled>";
+		echo "		<input class= \"input-xlarge\" id=\"uname_in\" type=\"text\" name=\"Username\" value=\"".$row['Username']."\">";
 		echo "	</div>";
 		echo "</div>";
 		echo "<div class=\"control-group\">";
@@ -82,7 +81,7 @@ else
 		echo "</div>";
 		echo "<div class=\"control-group\">";
 		echo "	<div class=\"controls\">";
-		echo "		<input class=\"btn btn-warning\"type=\"submit\" value=\"Edit\" name=\"btnEdit\"> <input class=\"btn btn-danger\" type=\"submit\" name=\"btnDel\" value=\"Delete\">";
+		echo "		<input class=\"btn btn-warning\" type=\"submit\" value=\"Edit\" name=\"btnEdit\"> <input class=\"btn btn-danger\" type=\"submit\" name=\"btnDel\" value=\"Delete\">";
 		echo "	</div>";
 		echo "</div>";
 		echo "</form>";

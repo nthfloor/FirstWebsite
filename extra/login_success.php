@@ -15,6 +15,8 @@ function alert($input)
 }
 ?>
 
+<!DOCTYPE html>
+
 <html lang="en">
 	<head>
 		<meta charset="utf=8">
@@ -179,7 +181,7 @@ function alert($input)
 							<?php
 								$sql="SELECT Name,Username FROM UserDetails";
 								$result=mysql_query($sql);
-								echo "<option selected= \"selected\"value=\"all_users\">All Users</option>";
+								echo "<option selected= \"selected\" value=\"all_users\">All Users</option>";
 								$counter=0;
 								while($row=mysql_fetch_array($result))
 								{			
@@ -203,14 +205,13 @@ function alert($input)
 											<?php
 												$sql="SELECT Name,Username FROM UserDetails";
 												$result=mysql_query($sql);
-												echo "<option selected= \"selected\"value=\"all_users\">Select User</option>";
+												echo "<option selected= \"selected\" value=\"all_users\">Select User</option>";
 												$counter=0;
 												while($row=mysql_fetch_array($result))
 												{			
 													$counter++;					
 													echo "<option value=\"".$row['Username']."\">".$row['Name']."</option>";
 												}
-												mysql_close($db_connection);
 											?>
 										</select>
 
