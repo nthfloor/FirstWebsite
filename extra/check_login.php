@@ -8,6 +8,14 @@
 	$uname=$_POST['user'];
 	$password=$_POST['password'];
 
+	if($uname=='')
+	{
+		$_SESSION['login_success']=3;
+		header("Location: ../signin.php");
+		die();
+		exit();
+	}
+
 	//connect to DB and query username and password combo for authentication.
 	$db_connection = mysql_connect("localhost","root","password");
 	if(! $db_connection)
@@ -21,11 +29,12 @@
 	$result=mysql_query($sql);
 	while($row = mysql_fetch_array($result))
 	{
-		alert($row['Username']." ".$row['Password']);
+		//alert($row['Username']." ".$row['Password']);
 		if($uname==$row['Username'] && $row['Password']==$password)
 		{
 			$_SESSION['user']=$uname;
 			$_SESSION['user_email']=$row['Email'];
+			$_SESSION['login_success']=1;
 			//echo $_SESSION['user'];
 			//move to dashboard page
 			//ob_start();
@@ -35,23 +44,22 @@
 		}
 		else
 		{
-			$_SESSION['user']=null;
-			//alert("Sorry, try again...");
 			//move back to login page
 			//ob_start();
-			//alert($uname." ".$password);
-			header("Location: ../sigin.html");
+			//echo($uname." ".$password);
+			$_SESSION['login_success']=0;
+			header("Location: ../signin.php");
 			die();
 			//ob_end_flush();
-			//exit();
+			exit();
 		}
 	}	
-	//alert("Nothing found.".$uname);
+	//echo($uname." ".$password);
 	//ob_start();
-	header("Location: ../signin.html");
+	$_SESSION['login_success']=2;
+	header("Location: ../signin.php");
 	die();
 	//ob_end_flush();
-	//exit();
 
 	mysql_close($db_connection);
 ?>

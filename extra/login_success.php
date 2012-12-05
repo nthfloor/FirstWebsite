@@ -4,7 +4,7 @@ session_start();
 //check if trying to access this page directly without logging in.
 if(!isset($_SESSION['user']))
 {
-	header("location: ../signin.html");
+	header("location: ../signin.php");
 	die();
 }	
 
@@ -114,22 +114,20 @@ function alert($input)
 		<div class="navbar navbar-fixed-top navbar-inverse">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-					<a class="brand" href="#">Dashboard for Managing User Accounts</a>
-					<div class="nav-collapse">						
-						<ul class="nav pull-right">
-							 						
-							<button class="btn btn-inverse" onclick="logout()">Logout</button>
-
-							<!--<li class="active"><a href="../ajax/logout.php">Logout</a></li>-->
-						</ul>
-						<!--<ul class="nav pull-right">
-							<li class="active">Signed in as_<?php echo $_SESSION['user'] ?></li>
-						</ul>-->
+					<ul class="nav">	
+						<li>
+							<a class="brand" href="login_success.php">Dashboard for Managing User Accounts</a>
+						</li>
+					</ul>										
+					<ul class="nav pull-right">							 						
+						<button class="btn btn-inverse" onclick="logout()">Logout</button>
+					</ul>
+					<ul class="nav pull-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								Signed in as: <?php echo $_SESSION['user'] ?></a>
+						</li>
+					</ul>
 					</div><!-- /.nav-collapse -->
 				</div>
 			</div>

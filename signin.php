@@ -1,8 +1,44 @@
+<?php
+session_start();
+if(isset($_SESSION['user']))
+{
+  header("Location: extra/login_success.php");
+  die();
+  exit();
+}
+
+//twitter login libraries
+/*include 'twitter-lib/EpiCurl.php';
+include 'twitter-lib/EpiOAuth.php';
+include 'twitter-lib/EpiTwitter.php';
+include 'twitter-lib/secret.php';
+
+$twitterObj = new EpiTwitter($consumer_key, $consumer_secret);
+$oauth_token = $_GET['oauth_token'];
+  if($oauth_token=='')
+  {
+    $url=$twitterObj->getAuthorizationUrl();
+  }
+  else
+  {
+    $twitterObj->setToken($_GET['oauth_token']);
+    $token = $twitterObj->getAccessToken();
+    $twitterObj->setToken($token->oauth_token, $token->oauth_token_secret);
+    $_SESSION['ot']=$token->oauth_token;
+    $_SESSION['ots']=$token->oauth_token_secret;
+    $twitterInfo=$twitterObj->get_accountVerify_credentials();
+    $twitterInfo->response;
+    $username=$twitterInfo->screen_name;
+    include 'update.php';
+  }*/
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sign in &middot; Twitter Bootstrap</title>
+    <title>Sign in &middot; HelloWorld</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -61,6 +97,11 @@
       {
         document.getElementById("uname").focus();
       }
+
+      function twitterSign()
+      {
+
+      }
     </script>
   </head>
 
@@ -83,12 +124,48 @@
 
       <form class="form-signin" action="extra/check_login.php" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
+        <?php
+          if(!isset($_SESSION['login_success']))
+          {
+        ?>
+        <div class="alert alert-block alert-success" id="alert_block">
+          <p id="alert_msg">Enter Login Details</p>
+        </div>
+        <?php
+          }
+          elseif($_SESSION['login_success']==0)
+          {
+          ?>
+        <div class="alert alert-block alert-error" id="alert_block">
+          <p id="alert_msg">Password does not match username.</p>
+        </div>
+        <?php
+          }
+          elseif($_SESSION['login_success']==2)
+          {
+        ?>
+        <div class="alert alert-block alert-error" id="alert_block">
+          <p id="alert_msg">User is not registered on system.</p>
+        </div>
+        <?php
+          }
+          elseif($_SESSION['login_success']==3)
+          {
+        ?>
+        <div class="alert alert-block alert-error" id="alert_block">
+          <p id="alert_msg">Please enter a username.</p>
+        </div>
+        <?php
+          }
+        ?>
+
         <input type="text" class="input-block-level" placeholder="Username" name="user" id="uname">
         <input type="password" class="input-block-level" placeholder="Password" name="password">
         <!--<label class="checkbox">
           <input type="checkbox" value="remember-me" name="remember"> Remember me
         </label>-->
-        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+        <button class="btn btn-large btn-primary" type="submit">Sign in</button> 
+        <?php echo "<a href='extra/twitter_login.php' class=\"btn btn-medium btn-primary\">Sign in With Twitter</a>"; ?>
       </form>
 
       <div class="navbar navbar-fixed-bottom navbar-inverse">
@@ -102,21 +179,11 @@
 
     <!-- Le javascript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="bootstrap/js/bootstrap.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->    
     <script src="bootstrap/js/bootstrap.min.js"></script>
-   <!-- <script src="template/js/bootstrap-transition.js"></script>
-    <script src="template/js/bootstrap-alert.js"></script>
-    <script src="template/js/bootstrap-modal.js"></script>
-    <script src="template/js/bootstrap-dropdown.js"></script>
-    <script src="template/js/bootstrap-scrollspy.js"></script>
-    <script src="template/js/bootstrap-tab.js"></script>
-    <script src="template/js/bootstrap-tooltip.js"></script>
-    <script src="template/js/bootstrap-popover.js"></script>
-    <script src="template/js/bootstrap-button.js"></script>
-    <script src="template/js/bootstrap-collapse.js"></script>
-    <script src="template/js/bootstrap-carousel.js"></script>
-    <script src="template/js/bootstrap-typeahead.js"></script> -->
+    <!--<script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/js/bootstrap-alert.js"></script>-->
 
   </body>
 </html>

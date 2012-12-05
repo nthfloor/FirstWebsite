@@ -18,10 +18,14 @@ if(isset($_SESSION['mail_success']))
 {
 	unset($_SESSION['mail_success']);
 }
+if(isset($_SESSION['login_success']))
+{
+	unset($_SESSION['login_success']);
+}
 
 session_destroy();
 ob_start();
-header("Location: ../signin.html");
+header("Location: ../signin.php");
 ob_end_flush();
 exit();
 
