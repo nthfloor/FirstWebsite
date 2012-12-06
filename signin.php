@@ -163,9 +163,10 @@ $oauth_token = $_GET['oauth_token'];
         <input type="password" class="input-block-level" placeholder="Password" name="password">
         <!--<label class="checkbox">
           <input type="checkbox" value="remember-me" name="remember"> Remember me
+          <?php //echo "<a href='extra/twitter_login.php' class=\"btn btn-medium btn-primary\">Sign in With Twitter</a>"; ?>
         </label>-->
-        <button class="btn btn-large btn-primary" type="submit">Sign in</button> 
-        <?php echo "<a href='extra/twitter_login.php' class=\"btn btn-medium btn-primary\">Sign in With Twitter</a>"; ?>
+        <button class="btn btn-large btn-primary" type="submit">Sign in</button>         
+        <a href="twitter-lib/twitter_login.php"><img src="./imgs/lighter.png" alt="Sign in with Twitter"/></a>
       </form>
 
       <div class="navbar navbar-fixed-bottom navbar-inverse">
